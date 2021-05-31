@@ -1,5 +1,6 @@
 package com.bangkit.waste.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -55,5 +56,16 @@ class HomeFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.home_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_how_to -> {
+                val i = Intent(requireContext(), HowToActivity::class.java)
+                startActivity(i)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

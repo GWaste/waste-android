@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Waste">
+        <activity android:name=".ui.home.HowToActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
