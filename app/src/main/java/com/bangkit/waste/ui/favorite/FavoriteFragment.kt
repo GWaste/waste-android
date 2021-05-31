@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bangkit.waste.adapter.ProductAdapter
+import com.bangkit.waste.data.Datasource
 import com.bangkit.waste.databinding.FragmentFavoriteBinding
 
 class FavoriteFragment : Fragment() {
@@ -27,13 +29,19 @@ class FavoriteFragment : Fragment() {
             ViewModelProvider(this).get(FavoriteViewModel::class.java)
 
         _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
-        val textView: TextView = binding.textFavorite
-        favoriteViewModel.text.observe(viewLifecycleOwner, {
-            textView.text = it
-        })
-        return root
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val favoriteDataset = Datasource().loadFavoriteProducts()
+
+        binding.recyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = ProductAdapter(requireContext(), favoriteDataset)
+        }
     }
 
     override fun onDestroyView() {

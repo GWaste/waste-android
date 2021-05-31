@@ -3,4 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_camera">Camera</string>
     <string name="title_favorite">Favorite</string>
+    
+    <string name="how_to">How To</string>
+    <string name="more_button">More</string>
 </resources>
