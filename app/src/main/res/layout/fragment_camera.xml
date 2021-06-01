@@ -7,7 +7,7 @@
     tools:context=".ui.camera.CameraFragment">
 
     <TextView
-        android:id="@+id/text_camera"
+        android:id="@+id/camera_view"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginStart="8dp"
@@ -25,8 +25,7 @@
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="64dp"
         android:text="Classify"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

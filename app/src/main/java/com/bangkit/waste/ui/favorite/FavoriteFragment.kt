@@ -36,7 +36,7 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val favoriteDataset = Datasource().loadFavoriteProducts()
+        val favoriteDataset = Datasource().loadProducts().filter { it.favorite }
 
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
