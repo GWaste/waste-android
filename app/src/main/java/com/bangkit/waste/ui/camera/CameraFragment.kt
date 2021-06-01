@@ -1,5 +1,6 @@
 package com.bangkit.waste.ui.camera
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +29,15 @@ class CameraFragment : Fragment() {
         _binding = FragmentCameraBinding.inflate(inflater, container, false)
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.classifyButton.setOnClickListener {
+            val i = Intent(requireContext(), CategoriesActivity::class.java)
+            startActivity(i)
+        }
     }
 
     override fun onDestroyView() {

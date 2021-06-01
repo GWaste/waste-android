@@ -7,22 +7,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.waste.R
-import com.bangkit.waste.model.Product
-import com.bangkit.waste.ui.ProductActivity
+import com.bangkit.waste.model.Category
+import com.bangkit.waste.ui.camera.ProductsActivity
 
 
-class ProductAdapter(private val context: Context, private val dataset: List<Product>) : RecyclerView.Adapter<ProductAdapter.ItemViewHolder>() {
+class CategoryAdapter(private val context: Context, private val dataset: List<Category>) :
+    RecyclerView.Adapter<CategoryAdapter.ItemViewHolder>() {
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val itemCard: CardView = view.findViewById(R.id.item_card)
         val nameText: TextView = view.findViewById(R.id.name_text)
+        val moreButton: TextView = view.findViewById(R.id.more_button)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val adapterLayout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.product_list_item, parent, false)
+            .inflate(R.layout.category_list_item, parent, false)
 
         return ItemViewHolder(adapterLayout)
     }
@@ -30,15 +30,15 @@ class ProductAdapter(private val context: Context, private val dataset: List<Pro
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
         holder.nameText.text = item.name
-        
-        holder.itemCard.setOnClickListener {
+
+        holder.moreButton.setOnClickListener {
             val b = Bundle()
-            b.putInt("product_id", item.id)
-            // b.putString("product_name", item.name)
-
-            val i = Intent(context, ProductActivity::class.java)
+            b.putInt("category_id", item.id)
+            b.putString("category_name", item.name)
+            
+            val i = Intent(context, ProductsActivity::class.java)
             i.putExtras(b)
-
+            
             context.startActivity(i)
         }
     }

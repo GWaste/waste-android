@@ -8,8 +8,6 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="16dp"
     android:layout_marginVertical="8dp"
-    android:clickable="true"
-    android:focusable="true"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp"
     app:contentPadding="12dp">
@@ -19,19 +17,33 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/name_text"
-            android:layout_width="wrap_content"
+            android:id="@+id/number_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:paddingHorizontal="8dp"
+            android:textAlignment="textStart"
+            android:textSize="18sp"
+            android:textColor="@color/material_on_surface_emphasis_high_type"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1" />
+        
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/step_text"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_medium"
             android:paddingHorizontal="8dp"
             android:paddingVertical="8dp"
-            android:textAlignment="center"
-            android:textSize="20sp"
+            android:textAlignment="textStart"
+            android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Tempat Tisu" />
+            app:layout_constraintTop_toBottomOf="@id/number_text"
+            tools:text="Sebelum membuat celengan dari kardus bekas, sebaiknya tentukan lebih dulu seberapa besar celengan yang akan kamu buat." />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

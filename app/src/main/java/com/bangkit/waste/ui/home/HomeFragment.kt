@@ -63,6 +63,7 @@ class HomeFragment : Fragment() {
             R.id.action_how_to -> {
                 val i = Intent(requireContext(), HowToActivity::class.java)
                 startActivity(i)
+                
                 true
             }
             else -> super.onOptionsItemSelected(item)

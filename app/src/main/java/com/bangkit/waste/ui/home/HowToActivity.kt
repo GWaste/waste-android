@@ -10,5 +10,6 @@ class HowToActivity : AppCompatActivity() {
         
         val binding = ActivityHowToBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        
     }
 }
