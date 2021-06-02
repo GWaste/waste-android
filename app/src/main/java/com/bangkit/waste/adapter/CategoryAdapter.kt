@@ -10,10 +10,15 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.waste.R
 import com.bangkit.waste.model.Category
+import com.bangkit.waste.model.CategoryResult
 import com.bangkit.waste.ui.camera.ProductsActivity
 
 
-class CategoryAdapter(private val context: Context, private val dataset: List<Category>) :
+class CategoryAdapter(
+    private val context: Context,
+    private val result: List<CategoryResult>,
+    private val dataset: List<Category>
+) :
     RecyclerView.Adapter<CategoryAdapter.ItemViewHolder>() {
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameText: TextView = view.findViewById(R.id.name_text)
@@ -28,20 +33,22 @@ class CategoryAdapter(private val context: Context, private val dataset: List<Ca
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        val item = dataset[position]
+        val item = dataset.first { 
+            it.name.lowercase() == result[position].name.lowercase()
+        }
         holder.nameText.text = item.name
 
         holder.moreButton.setOnClickListener {
             val b = Bundle()
             b.putInt("category_id", item.id)
             b.putString("category_name", item.name)
-            
+
             val i = Intent(context, ProductsActivity::class.java)
             i.putExtras(b)
-            
+
             context.startActivity(i)
         }
     }
 
-    override fun getItemCount() = dataset.size
+    override fun getItemCount() = result.size
 }

@@ -12,3 +12,9 @@ data class Category(
 data class CategoryContainer(
     val category: List<Category>
 )
+
+@Serializable
+data class CategoryResult(
+    val name: String,
+    val confident: Double
+)

@@ -37,6 +37,7 @@
                         android:textAlignment="textStart"
                         android:textColor="@color/material_on_surface_emphasis_high_type"
                         android:textSize="18sp"
+                        android:text="@string/ukm_not_found"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -47,6 +48,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <LinearLayout
+                android:id="@+id/contact_buttons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -107,7 +109,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:text="Mendekor Indonesia" />
+                        tools:text="Kota Tangerang" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -118,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:text="Buy Product"
+                android:text="@string/buy_product"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -129,7 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:text="Sell Material"
+                android:text="@string/sell_material"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

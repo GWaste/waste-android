@@ -1,6 +1,7 @@
 package com.bangkit.waste.ui
 
 import android.os.Bundle
+import android.view.View.GONE
 import androidx.appcompat.app.AppCompatActivity
 import com.bangkit.waste.data.Datasource
 import com.bangkit.waste.databinding.ActivityUkmBinding
@@ -20,9 +21,17 @@ class UkmActivity : AppCompatActivity() {
         }
 
         val dataset = Datasource().loadUkms()
-        val ukm = dataset.first { it.productId.contains(productId) }
         
-        binding.nameText.text = ukm.name
-        binding.addressText.text = ukm.map.location
+        try {
+            val ukm = dataset.first { it.productId.contains(productId) }
+            binding.nameText.text = ukm.name
+            binding.addressText.text = ukm.map.location
+        } catch (e: Exception) {
+            binding.contactButtons.visibility = GONE
+            binding.addressText.visibility = GONE
+            binding.buyButton.visibility = GONE
+            binding.sellButton.visibility = GONE
+        }
+        
     }
 }
