@@ -38,7 +38,7 @@ class CategoryAdapter(
             it.name.lowercase() == result[position].name.lowercase()
         }
         holder.nameText.text = item.name
-        holder.confidentText.text = result[position].confident.toString()
+        holder.confidentText.text = String.format("%.2f", result[position].confident * 100) + "%"
         
 
         holder.moreButton.setOnClickListener {

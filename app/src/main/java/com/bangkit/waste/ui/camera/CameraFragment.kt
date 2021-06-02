@@ -42,6 +42,7 @@ class CameraFragment : Fragment() {
     private var cameraProvider : ProcessCameraProvider? = null
     private var cameraSelector : CameraSelector? = null
     private var preview : Preview? = null
+    private var isFreeze : Boolean = true
     private var imageAnalysis : ImageAnalysis? = null
     private var imageCapture : ImageCapture? = null
 
@@ -74,6 +75,9 @@ class CameraFragment : Fragment() {
 
         binding.classifyButton.setOnClickListener {
 
+            cameraProvider?.unbind(preview)
+            isFreeze = true
+            
             binding.classifyButton.isEnabled = false
             Toast.makeText(requireContext(), "Classifying object...",Toast.LENGTH_SHORT).show()
             onCaptureClick()
@@ -85,8 +89,9 @@ class CameraFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        if (cameraProvider != null) {
+        cameraProvider?.let {
             binding.classifyButton.isEnabled = true
+            bindPreview(it)
         }
 
     }
@@ -97,16 +102,20 @@ class CameraFragment : Fragment() {
     }
 
     fun bindPreview(cameraProvider : ProcessCameraProvider) {
-        preview = Preview.Builder()
-            .build()
-
-        cameraSelector = CameraSelector.Builder()
-            .requireLensFacing(CameraSelector.LENS_FACING_BACK)
-            .build()
-
-        preview!!.setSurfaceProvider(binding.previewView.surfaceProvider)
-
-        cameraProvider.bindToLifecycle(this as LifecycleOwner, cameraSelector!!, preview)
+        if (isFreeze) {
+            isFreeze = false
+            
+            preview = Preview.Builder()
+                .build()
+    
+            cameraSelector = CameraSelector.Builder()
+                .requireLensFacing(CameraSelector.LENS_FACING_BACK)
+                .build()
+    
+            preview!!.setSurfaceProvider(binding.previewView.surfaceProvider)
+    
+            cameraProvider.bindToLifecycle(this as LifecycleOwner, cameraSelector!!, preview)
+        }
     }
     
     fun bindAnalysis(cameraProvider : ProcessCameraProvider) {
