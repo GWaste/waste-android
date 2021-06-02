@@ -24,7 +24,9 @@ class CategoriesActivity : AppCompatActivity() {
             jsonString = it.getString("response", "")
         }
 
-        val result = Json.decodeFromString<List<CategoryResult>>(jsonString)
+        val result = Json.decodeFromString<List<CategoryResult>>(jsonString).sortedBy { 
+            -it.confident
+        }.take(2)
         
         val productDataset = Datasource().loadCategories()
 

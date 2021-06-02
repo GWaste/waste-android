@@ -22,6 +22,7 @@ class CategoryAdapter(
     RecyclerView.Adapter<CategoryAdapter.ItemViewHolder>() {
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameText: TextView = view.findViewById(R.id.name_text)
+        val confidentText: TextView = view.findViewById(R.id.confident_text)
         val moreButton: TextView = view.findViewById(R.id.more_button)
     }
 
@@ -37,6 +38,8 @@ class CategoryAdapter(
             it.name.lowercase() == result[position].name.lowercase()
         }
         holder.nameText.text = item.name
+        holder.confidentText.text = result[position].confident.toString()
+        
 
         holder.moreButton.setOnClickListener {
             val b = Bundle()
