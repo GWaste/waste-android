@@ -1,2 +1,10 @@
 rootProject.name = "Waste"
 include ':app'
+include ':core'
+include ':chromecast-sender-sample-app'
+include ':core-sample-app'
+include ':chromecast-sender'
+project(':core').projectDir = new File(rootDir, 'libs/android-youtube-player/core/')
+project(':chromecast-sender-sample-app').projectDir = new File(rootDir, 'libs/android-youtube-player/chromecast-sender-sample-app/')
+project(':core-sample-app').projectDir = new File(rootDir, 'libs/android-youtube-player/core-sample-app/')
+project(':chromecast-sender').projectDir = new File(rootDir, 'libs/android-youtube-player/chromecast-sender/')

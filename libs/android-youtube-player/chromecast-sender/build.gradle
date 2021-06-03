@@ -1,0 +1,37 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply from: '../dependencies.gradle'
+
+ext.shard = 'chromecast-sender'
+ext.libVersion = versions.publishVersion_chromecast
+ext.libDescription = 'Extension for the android-youtube-player:core library, that enables Chromecast compatibility.'
+
+android {
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
+
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.compileSdk
+        versionCode versions.publishVersionCode_chromecast
+        versionName versions.publishVersion_chromecast
+    }
+
+    sourceSets {
+        main.res.srcDirs = [
+            'src/main/res',
+            'src/main/res-public'
+        ]
+    }
+}
+
+dependencies {
+    testImplementation "junit:junit:$versions.junit"
+    androidTestImplementation "androidx.test:runner:$versions.runner"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espressoCore"
+
+    api project(':core')
+    api "com.google.android.gms:play-services-cast-framework:$versions.googlePlayServicesCastFramework"
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+}

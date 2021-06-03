@@ -101,7 +101,7 @@ class CameraFragment : Fragment() {
         _binding = null
     }
 
-    fun bindPreview(cameraProvider : ProcessCameraProvider) {
+    private fun bindPreview(cameraProvider : ProcessCameraProvider) {
         if (isFreeze) {
             isFreeze = false
             
@@ -118,7 +118,7 @@ class CameraFragment : Fragment() {
         }
     }
     
-    fun bindAnalysis(cameraProvider : ProcessCameraProvider) {
+    private fun bindAnalysis(cameraProvider : ProcessCameraProvider) {
         imageAnalysis = ImageAnalysis.Builder()
             .setTargetResolution(Size(1280, 720))
             .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
@@ -132,16 +132,16 @@ class CameraFragment : Fragment() {
         cameraProvider.bindToLifecycle(this as LifecycleOwner, cameraSelector!!, imageAnalysis, preview)
     }
     
-    fun bindCapture(cameraProvider : ProcessCameraProvider) {
+    private fun bindCapture(cameraProvider : ProcessCameraProvider) {
         imageCapture = ImageCapture.Builder()
-            .setTargetRotation(requireView().display.rotation).setTargetResolution(Size(256, 256))
+            .setTargetRotation(requireView().display.rotation).setTargetResolution(Size(400, 300))
             .build()
 
         cameraProvider.bindToLifecycle(this as LifecycleOwner, cameraSelector!!, imageCapture,
             imageAnalysis, preview)
     }
 
-    fun onCaptureClick() {
+    private fun onCaptureClick() {
         val cameraExecutor = ContextCompat.getMainExecutor(requireContext())
         imageCapture?.takePicture(cameraExecutor,
             object : ImageCapture.OnImageCapturedCallback() {

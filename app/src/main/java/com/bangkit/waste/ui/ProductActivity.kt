@@ -2,9 +2,12 @@ package com.bangkit.waste.ui
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import com.bangkit.waste.data.Datasource
 import com.bangkit.waste.databinding.ActivityProductBinding
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.squareup.picasso.Picasso
 
 class ProductActivity : AppCompatActivity() {
@@ -26,6 +29,14 @@ class ProductActivity : AppCompatActivity() {
 
         title = product.name
         Picasso.get().load(product.image).into(binding.imageView)
+        
+        binding.youtubePlayerView.addYouTubePlayerListener(object :
+            AbstractYouTubePlayerListener() {
+            override fun onReady(youTubePlayer: YouTubePlayer) {
+                val videoId = product.linkYt
+                youTubePlayer.loadVideo(videoId, 0F)
+            }
+        })
         
         binding.stepCard.setOnClickListener {
             val sb = Bundle()

@@ -11,6 +11,10 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/libs/android-youtube-player/chromecast-sender" />
+            <option value="$PROJECT_DIR$/libs/android-youtube-player/chromecast-sender-sample-app" />
+            <option value="$PROJECT_DIR$/libs/android-youtube-player/core" />
+            <option value="$PROJECT_DIR$/libs/android-youtube-player/core-sample-app" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
