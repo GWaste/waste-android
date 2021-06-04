@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.waste.R
 import com.bangkit.waste.model.Category
@@ -21,9 +22,9 @@ class CategoryAdapter(
 ) :
     RecyclerView.Adapter<CategoryAdapter.ItemViewHolder>() {
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val itemCard: CardView = view.findViewById(R.id.item_card)
         val nameText: TextView = view.findViewById(R.id.name_text)
         val confidentText: TextView = view.findViewById(R.id.confident_text)
-        val moreButton: TextView = view.findViewById(R.id.more_button)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -41,7 +42,7 @@ class CategoryAdapter(
         holder.confidentText.text = String.format("%.2f", result[position].confident * 100) + "%"
         
 
-        holder.moreButton.setOnClickListener {
+        holder.itemCard.setOnClickListener {
             val b = Bundle()
             b.putInt("category_id", item.id)
             b.putString("category_name", item.name)

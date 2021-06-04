@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Waste">
         <activity
+            android:name=".IngredientsActivity"
+            android:label="@string/ingredients" />
+        <activity
             android:name=".ui.UkmActivity"
             android:label="@string/ukm" />
         <activity

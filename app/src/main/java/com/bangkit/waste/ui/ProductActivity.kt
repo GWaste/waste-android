@@ -1,9 +1,11 @@
 package com.bangkit.waste.ui
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
+import com.bangkit.waste.IngredientsActivity
+import com.bangkit.waste.R
 import com.bangkit.waste.data.Datasource
 import com.bangkit.waste.databinding.ActivityProductBinding
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
@@ -35,6 +37,7 @@ class ProductActivity : AppCompatActivity() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 val videoId = product.linkYt
                 youTubePlayer.loadVideo(videoId, 0F)
+                youTubePlayer.pause()
             }
         })
         
@@ -48,6 +51,16 @@ class ProductActivity : AppCompatActivity() {
             startActivity(i)
         }
         
+        binding.ingredientsCard.setOnClickListener {
+            val sb = Bundle()
+            sb.putInt("product_id", productId)
+
+            val i = Intent(this@ProductActivity, IngredientsActivity::class.java)
+            i.putExtras(sb)
+            
+            startActivity(i)
+        }
+        
         binding.ukmCard.setOnClickListener {
             val ub = Bundle()
             ub.putInt("product_id", productId)
@@ -56,6 +69,64 @@ class ProductActivity : AppCompatActivity() {
             i.putExtras(ub)
 
             startActivity(i)
+        }
+        
+        var isFavorite = checkFavorite(productId)
+        if (isFavorite) {
+            binding.favoriteButton.setImageResource(R.drawable.ic_baseline_favorite_24)
+        }
+        
+        binding.favoriteButton.setOnClickListener { 
+            if (isFavorite) {
+                removeFavoriteFromPrefs(productId)
+                binding.favoriteButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+            } else {
+                addFavoriteToPrefs(productId)
+                binding.favoriteButton.setImageResource(R.drawable.ic_baseline_favorite_24)
+            }
+            isFavorite = !isFavorite
+        }
+    }
+    
+    fun checkFavorite(id: Int): Boolean {
+        val sharedPref = getSharedPreferences("waste", Context.MODE_PRIVATE)
+        val prefVal = sharedPref.getString("favorites", "") ?: ""
+        val favorites = prefVal.split(',')
+        
+        return favorites.contains(id.toString())
+    }
+    
+    fun addFavoriteToPrefs(id: Int) {
+        val sharedPref = getSharedPreferences("waste", Context.MODE_PRIVATE)
+        val prefVal = sharedPref.getString("favorites", "") ?: ""
+        val favorites = prefVal.split(',')
+
+        if (!favorites.contains(id.toString())) {
+            val newFavorites = mutableListOf<String>()
+            newFavorites.addAll(favorites)
+            newFavorites.add(id.toString())
+            
+            with(sharedPref.edit()) {
+                putString("favorites", newFavorites.joinToString(","))
+                apply()
+            }
+        }
+    }    
+    
+    fun removeFavoriteFromPrefs(id: Int) {
+        val sharedPref = getSharedPreferences("waste", Context.MODE_PRIVATE)
+        val prefVal = sharedPref.getString("favorites", "") ?: ""
+        val favorites = prefVal.split(',')
+
+        if (favorites.contains(id.toString())) {
+            val newFavorites = mutableListOf<String>()
+            newFavorites.addAll(favorites)
+            newFavorites.remove(id.toString())
+
+            with(sharedPref.edit()) {
+                putString("favorites", newFavorites.joinToString(","))
+                apply()
+            }
         }
     }
 }

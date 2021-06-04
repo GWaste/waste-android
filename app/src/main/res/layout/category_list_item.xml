@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginHorizontal="16dp"
     android:layout_marginVertical="8dp"
-    app:contentPadding="12dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="8dp"
     app:cardElevation="4dp"
-    app:cardCornerRadius="8dp">
-    
+    app:contentPadding="12dp">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -19,39 +22,37 @@
             android:id="@+id/name_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="8dp"
-            tools:text="Cardboard"
-            android:textSize="18sp"
-            android:textColor="@color/material_on_surface_emphasis_high_type"
             android:fontFamily="@font/montserrat_medium"
-            app:layout_constraintTop_toTopOf="parent"
+            android:paddingHorizontal="8dp"
+            android:textColor="@color/material_on_surface_emphasis_high_type"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            />
-      
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Cardboard" />
+
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/confident_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="8dp"
-            tools:text="0.9690907001495361"
-            android:textSize="15sp"
-            android:textColor="@color/material_on_surface_emphasis_medium"
             android:fontFamily="@font/montserrat_medium"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginVertical="2dp"
+            android:paddingHorizontal="8dp"
+            android:textColor="@color/material_on_surface_emphasis_medium"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@id/name_text"
             app:layout_constraintStart_toStartOf="parent"
-            />
-        
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/more_button"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/more_button"
+            tools:text="99.81%" />
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            app:srcCompat="@drawable/ic_next"
+            app:tint="@color/material_on_surface_emphasis_medium"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-            
-        
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-    
+
 </com.google.android.material.card.MaterialCardView>
