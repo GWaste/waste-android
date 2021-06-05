@@ -13,8 +13,8 @@
     <string name="ukm_not_found">Tidak ditemukan UKM terkait.</string>
 
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed convallis finibus nisi, non aliquet ante aliquam nec. Cras sed lobortis nulla. Phasellus varius ipsum et lorem congue placerat. Curabitur et sagittis dolor, quis aliquet nisl. In posuere pulvinar iaculis. Praesent vulputate ornare pharetra. Integer vitae gravida elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec tellus lorem, rhoncus id aliquam vel, scelerisque ac diam. Duis eleifend finibus vestibulum. Quisque dictum, magna consequat pulvinar porttitor, velit elit sagittis urna, ut cursus libero nibh ut nibh. Integer vel nisl posuere, porta tortor vel, volutpat orci.</string>
-    <string name="buy_product">Buy Product</string>
-    <string name="sell_material">Sell Material</string>
+    <string name="buy_product">• You can buy product here</string>
+    <string name="sell_material">• You can sell material here</string>
     <string name="classify">Classify</string>
     <string name="favorite_button">Favorite Button</string>
     <string name="ingredients">Ingredients</string>

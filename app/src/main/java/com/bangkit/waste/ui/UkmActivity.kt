@@ -29,8 +29,6 @@ class UkmActivity : AppCompatActivity() {
         } catch (e: Exception) {
             binding.contactButtons.visibility = GONE
             binding.addressText.visibility = GONE
-            binding.buyButton.visibility = GONE
-            binding.sellButton.visibility = GONE
         }
         
     }
