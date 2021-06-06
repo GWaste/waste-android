@@ -1,5 +1,6 @@
 package com.bangkit.waste.ui.camera
 
+import android.Manifest
 import android.content.Intent
 import android.os.Bundle
 import android.util.Base64
@@ -23,13 +24,16 @@ import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.bangkit.waste.databinding.FragmentCameraBinding
+import com.bangkit.waste.utils.CameraUtility
 import com.google.common.util.concurrent.ListenableFuture
 import org.json.JSONObject
+import pub.devrel.easypermissions.AppSettingsDialog
+import pub.devrel.easypermissions.EasyPermissions
 import java.io.UnsupportedEncodingException
 import java.nio.ByteBuffer
 
 
-class CameraFragment : Fragment() {
+class CameraFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
     private lateinit var cameraViewModel: CameraViewModel
     private var _binding: FragmentCameraBinding? = null
@@ -51,6 +55,8 @@ class CameraFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        requestPermissions()
         cameraViewModel =
             ViewModelProvider(this).get(CameraViewModel::class.java)
       
@@ -85,6 +91,38 @@ class CameraFragment : Fragment() {
         
     }
 
+    private fun requestPermissions() {
+        if (CameraUtility.hasPermission(requireContext())) {
+            return
+        }
+
+        EasyPermissions.requestPermissions(
+            this,
+            "You need to accept camera permissions to use this app.",
+            0,
+            Manifest.permission.CAMERA
+        )
+    }
+
+    override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+            AppSettingsDialog.Builder(this).build().show()
+        } else {
+            requestPermissions()
+        }
+    }
+
+    override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {}
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
+    }
 
     override fun onResume() {
         super.onResume()
@@ -115,6 +153,7 @@ class CameraFragment : Fragment() {
             preview!!.setSurfaceProvider(binding.previewView.surfaceProvider)
     
             cameraProvider.bindToLifecycle(this as LifecycleOwner, cameraSelector!!, preview)
+                 
         }
     }
     
@@ -223,7 +262,7 @@ class CameraFragment : Fragment() {
                             responseString,
                             HttpHeaderParser.parseCacheHeaders(response)
                         )
-                    }
+                    }                    
                 }
             requestQueue.add(stringRequest)
         } catch (e: Exception) {

@@ -67,4 +67,7 @@ dependencies {
     implementation "androidx.camera:camera-view:1.0.0-alpha24"
     // If you want to additionally use the CameraX Extensions library
     implementation "androidx.camera:camera-extensions:1.0.0-alpha24"
+
+    // Easy Permissions
+    implementation 'pub.devrel:easypermissions:3.0.0'
 }
