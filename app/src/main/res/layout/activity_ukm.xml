@@ -131,30 +131,6 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/buy_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_medium"
-                android:paddingVertical="4dp"
-                android:paddingHorizontal="20dp"
-                android:textAlignment="textStart"
-                android:textSize="18sp"
-                android:text="@string/buy_product" />
-
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/sell_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_medium"
-                android:paddingVertical="4dp"
-                android:paddingHorizontal="20dp"
-                android:textAlignment="textStart"
-                android:textSize="18sp"
-                android:text="@string/sell_material" />
-
-
         </LinearLayout>
     </ScrollView>
 </FrameLayout>
