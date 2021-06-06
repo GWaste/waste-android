@@ -13,12 +13,12 @@
 ## Screenshots
 
 <p align="center">
-  <img align="center" width=100 src="./screenshots/screenshot-1.jpeg" />
-  <img align="center" width=100 src="./screenshots/screenshot-2.jpeg" />
-  <img align="center" width=100 src="./screenshots/screenshot-4.jpeg" />
-  <img align="center" width=100 src="./screenshots/screenshot-5.jpeg" />
-  <img align="center" width=100 src="./screenshots/screenshot-6.jpeg" />
-  <img align="center" width=100 src="./screenshots/screenshot-7.jpeg" />
+  <img align="center" width=120 src="./assets/screenshots/screenshot-1.jpeg" />
+  <img align="center" width=120 src="./assets/screenshots/screenshot-2.jpeg" />
+  <img align="center" width=120 src="./assets/screenshots/screenshot-4.jpeg" />
+  <img align="center" width=120 src="./assets/screenshots/screenshot-5.jpeg" />
+  <img align="center" width=120 src="./assets/screenshots/screenshot-6.jpeg" />
+  <img align="center" width=120 src="./assets/screenshots/screenshot-7.jpeg" />
 </p>
 
 ## Getting Started
