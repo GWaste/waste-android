@@ -3,6 +3,9 @@
     <color name="red_200">#EF9A9A</color>
     <color name="red_500">#F44336</color>
     <color name="red_700">#D32F2F</color>
+    <color name="green_200">#8BC34A</color>
+    <color name="green_500">#64AA60</color>
+    <color name="green_700">#4CAF50</color>
     <color name="blue_200">#90CAF9</color>
     <color name="blue_700">#1976D2</color>
     <color name="black">#FF000000</color>
