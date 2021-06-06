@@ -19,7 +19,7 @@
 
 ### Run Locally
 
-1. Clone the project [Optional]
+1. Clone the project
 
    ```sh
    $ git clone https://github.com/GWaste/waste-android
