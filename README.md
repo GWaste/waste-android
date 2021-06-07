@@ -66,3 +66,4 @@ or contact one of our member.
 ## Acknowledgements
 
  - [Bangkit](http://bangkit.academy/)
+ - [GWaste](https://github.com/GWaste/Introduction)
