@@ -16,10 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
-import com.android.volley.AuthFailureError
-import com.android.volley.NetworkResponse
-import com.android.volley.Response
-import com.android.volley.VolleyLog
+import com.android.volley.*
 import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -191,7 +188,6 @@ class CameraFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
                 override fun onCaptureSuccess(image: ImageProxy) {
                     val imageInBase64String = imageProxyToBase64String(image)
-                    Log.d("ZXC b64", imageInBase64String)
                     requestClassify(imageInBase64String)
                 }
             })
@@ -236,7 +232,14 @@ class CameraFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                             binding.classifyButton.isEnabled = true
                         }
                     },
-                    Response.ErrorListener { error -> Log.e("VOLLEY", error.toString()) }) {
+                    Response.ErrorListener { error ->
+                        Log.e("VOLLEY", error.toString() ?: "")
+                        Toast.makeText(requireContext(), error.toString() ?: "",Toast.LENGTH_SHORT).show()
+                        binding.classifyButton.isEnabled = true
+                        cameraProvider?.let { cp ->
+                            bindPreview(cp)
+                        }
+                    }) {
                     override fun getBodyContentType(): String {
                         return "application/json; charset=utf-8"
                     }
@@ -254,6 +257,15 @@ class CameraFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                             )
                             null
                         }
+                    }
+
+                    override fun getRetryPolicy(): RetryPolicy {
+                        return DefaultRetryPolicy(
+                            15000,
+                            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+                        )
+
                     }
 
                     override fun parseNetworkResponse(response: NetworkResponse): Response<String> {
