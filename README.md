@@ -25,7 +25,7 @@
 
 ### Prerequisites
 
-- [Android Studio 4.2.1](https://developer.android.com/studio)
+- [Android Studio](https://developer.android.com/studio)
 
 
 ### Run Locally
