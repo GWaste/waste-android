@@ -22,6 +22,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.bangkit.waste.databinding.FragmentCameraBinding
 import com.bangkit.waste.utils.CameraUtility
+import com.bangkit.waste.utils.Constant
 import com.google.common.util.concurrent.ListenableFuture
 import org.json.JSONObject
 import pub.devrel.easypermissions.AppSettingsDialog
@@ -206,8 +207,7 @@ class CameraFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     private fun requestClassify(base64String: String) {
         try {
             val requestQueue = Volley.newRequestQueue(requireContext())
-            val url =
-                "https://us-central1-cosmic-quarter-312712.cloudfunctions.net/waste-classifier"
+            val url = Constant.MODEL_URL
             val jsonBody = JSONObject()
             jsonBody.put(
                 "image",
